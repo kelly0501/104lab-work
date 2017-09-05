@@ -1,8 +1,9 @@
-BIN_DIR = exe
+BIN_DIR = bin
 CXX = g++
 CPPFLAGS = -Wall -g
 
 all: $(BIN_DIR)/lab3
+	./$(BIN_DIR)/lab3
 
 $(BIN_DIR)/lab3: $(BIN_DIR)/attackMove.o $(BIN_DIR)/battle.o $(BIN_DIR)/pokemon.o $(BIN_DIR)/.dirstamp
 	$(CXX) $(CPPFLAGS) $(BIN_DIR)/attackMove.o $(BIN_DIR)/battle.o $(BIN_DIR)/pokemon.o main.cpp -o $(BIN_DIR)/lab3
@@ -19,3 +20,7 @@ $(BIN_DIR)/pokemon.o: lib/pokemon.h src/pokemon.cpp $(BIN_DIR)/.dirstamp
 $(BIN_DIR)/.dirstamp:
 	mkdir -p $(BIN_DIR)
 	touch $(BIN_DIR)/.dirstamp
+
+.PHONY: clean
+clean:
+	rm -rf $(BIN_DIR)
